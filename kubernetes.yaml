@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: cicd-project
-        image: us-central1-docker.pkg.dev/tw-rd-ca-ray-huang/my-repository/cicd-project:49120f8
+        image: us-central1-docker.pkg.dev/tw-rd-ca-ray-huang/my-repository/cicd-project:1bae5e0
         ports:
         - containerPort: 8080
 ---
