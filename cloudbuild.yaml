@@ -1,6 +1,6 @@
 steps:
 # This step deploys the new version of our container image
-# in the hello-cloudbuild Kubernetes Engine cluster.
+# in the cicd-project Kubernetes Engine cluster.
 - name: 'gcr.io/cloud-builders/kubectl'
   id: Deploy
   args:
@@ -9,7 +9,7 @@ steps:
   - 'kubernetes.yaml'
   env:
   - 'CLOUDSDK_COMPUTE_REGION=us-central1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cloudbuild'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cicd-project'
 
 # This step copies the applied manifest to the production branch
 # The COMMIT_SHA variable is automatically
@@ -22,6 +22,7 @@ steps:
   - |
     set -x && \
     # Configure Git to create commits with Cloud Build's service account
+    git config --global url."https://${_GITHUB_TOKEN}:@github.com/".insteadOf "https://github.com/" && \
     git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)') && \
     # Switch to the production branch and copy the kubernetes.yaml file from the candidate branch
     git fetch origin production && git checkout production && \
