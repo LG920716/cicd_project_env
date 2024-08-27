@@ -31,3 +31,6 @@ steps:
     $(git log --format=%B -n 1 $COMMIT_SHA)" && \
     # Push the changes back to Cloud Source Repository
     git push origin production
+logsBucket: 'gs://tw-rd-ca-ray-huang-ci-cd-project'
+options:
+  logging: GCS_ONLY
